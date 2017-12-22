@@ -1,0 +1,58 @@
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+
+#formMonto{ 
+    margin-top: 50px;
+    padding: 20px 4px 4px 4px; 
+} 
+
+#formRemitente{ 
+    margin-top: 20px;
+    padding: 20px 4px 4px 4px; 
+} 
+
+#formBeneficiario{ 
+    margin-top: 30px;
+    padding: 20px 4px 4px 4px; 
+} 
+
+li{
+    text-align: right;
+    background: linear-gradient(to bottom, #c9c9c9 0%, #ffffff 100%);
+    border-bottom: 1px solid #555;
+}
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+strong{
+    color: #9b1818;
+}
+
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+#grad1 {
+    height: 20px;
+    background: linear-gradient(to bottom, #ffffff 0%, #ff9999 100%);
+}
+
+a:link {
+    color: black;
+}
+
+table{
+    border-collapse:separate; 
+    border-spacing:5px;
+}
+
+

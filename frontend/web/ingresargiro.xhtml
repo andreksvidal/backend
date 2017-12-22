@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Pagina web</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous"/>        
+        <link rel="stylesheet" type="text/css" href="styles.css"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">         
+            <div class="row">
+                <div class="col-md-12 nopadding">
+                    <img style="width: 100%" src="cabecera.jpg"/>
+                </div>                
+            </div>
+            <div class="row">
+                <div id="grad1" class="col-md-12">
+                    <a href="/html/">Cerrar sesion</a> &nbsp;&nbsp;
+                    <a href="/css/">Inicio</a> 
+                </div>                    
+            </div>
+            <div class="row">
+                <div class="col-md-2 nopadding">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation"><a href="ingresargiro.xhtml">Realizar Giro</a></li>         
+                        <li role="presentation"><a href="girosrecibidos.xhtml">Consultar giros recibidos</a></li>
+                        <li role="presentation"><a href="girosrealizados.xhtml">Consultar giros realizados</a></li>                                                                  
+                        <li role="presentation"><a href="girospagados.xhtml">Consultar giros pagados</a></li>    
+                        <li role="presentation"><a href="pagofacturas.xhtml">Realizar pago de factura</a></li>
+                        <li role="presentation"><a href="pagofacturasrecibidos.xhtml">Consultar pagos de facturas recibidos</a></li>
+                        <li role="presentation"><a href="pagofacturasrealizados.xhtml">Consultar pagos de facturas realizados</a></li>
+                        <li role="presentation"><a href="abonocuenta.xhtml">Realizar abono de cuenta</a></li>
+                        <li role="presentation"><a href="abonocuentasrecibidos.xhtml">Consultar abono de cuentas recibidos</a></li>
+                        <li role="presentation"><a href="abonocuentasrealizados.xhtml">Consultar abono de cuentas realizados</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-10">
+                    <div id="principal"> 
+                        <h:form>   
+                            <div>    
+                                <label>Seleccione destino</label><br/>
+                                <h:commandButton action="#{sucursalController.seleccionarDestino(1)}" value="Ubicar destino"/>
+                                <table>
+                                    <tr>
+                                        <td><strong>Destino Seleccionado:</strong></td>
+                                        <td align="left"><h:outputText value="#{sucursalController.current.agencia}"/></td>
+                                    </tr>
+                                </table>
+                            </div>                       
+                            <div id="formRemitente">                                             
+                                <strong>Datos del Remitente:</strong>
+                                <table>
+                                    <tr>
+                                        <td style="width: 205px">Tipo de Identificacion:</td>
+                                        <td align="left">
+                                            <h:selectOneMenu value = "#{giroController.current.emisor.tipoidentificacion}"> 
+                                                <f:selectItem itemValue = "CC" itemLabel = "Cedula" /> 
+                                                <f:selectItem itemValue = "TI" itemLabel = "Tarjeta de identidad" /> 
+                                                <f:selectItem itemValue = "PA" itemLabel = "Pasaporte" /> 
+                                            </h:selectOneMenu>                 
+                                        </td>
+                                        <td align="right" style="width: 205px">No. Identificacion:</td>
+                                        <td align="left"><h:inputText style="width: 250px"  value="#{giroController.current.emisor.numidentifiacion}"/></td>
+                                    </tr>
+                                    <tr></tr>
+                                    <tr>
+                                        <td style="width: 205px">Primer Nombre:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.emisor.primernombre}" readonly="true"/></td>
+                                        <td align="right" style="width: 205px">Segundo Nombre:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.emisor.segundonombre}" readonly="true"/></td>                                        
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 205px">Primer Apellido:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.emisor.primerapellido}"  readonly="true"/></td>
+                                        <td align="right" style="width: 205px">Segundo Apellido:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.emisor.segundoapellido}" readonly="true"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <h:commandButton value="Buscar Cliente" action="#{giroController.esEmisor(1)}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 205px">Direccion:</td>
+                                        <td colspan="3"><h:inputText style="width: 450px" value="#{giroController.current.emisor.direccion}" readonly="true" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 205px">Telefono:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.emisor.telefono}"  readonly="true"/></td>
+                                        <td align="right" style="width: 205px">Celular:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.emisor.celular}"  readonly="true"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 205px">Estado/Dpto:</td>
+                                        <td>
+                                            <h:selectOneMenu value = "#{giroController.current.emisor.departamento}"> 
+                                                <f:selectItem itemValue = "Cauca" itemLabel = "Cauca" /> 
+                                                <f:selectItem itemValue = "Valle del cauca" itemLabel = "Valle del cauca" /> 
+                                                <f:selectItem itemValue = "Bolivar" itemLabel = "Bolivar" /> 
+                                            </h:selectOneMenu> 	                               
+                                        </td>
+                                        <td align="right" style="width: 205px">Ciudad:</td>
+                                        <td>
+                                            <h:selectOneMenu value = "#{giroController.current.emisor.ciudad}"> 
+                                                <f:selectItem itemValue = "Popayan" itemLabel = "Popayan" /> 
+                                                <f:selectItem itemValue = "Cali" itemLabel = "Cali" /> 
+                                                <f:selectItem itemValue = "Cartagena" itemLabel = "Cartagena" /> 
+                                            </h:selectOneMenu> 
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="formBeneficiario">                     
+                                <strong>Datos del Beneficiario:</strong>
+                                <table>
+                                    <tr>
+                                        <td style="width: 205px">Tipo de Identificacion:</td>
+                                        <td align="left">
+                                            <h:selectOneMenu value = "#{giroController.current.beneficiario.tipoidentificacion}"> 
+                                                <f:selectItem itemValue = "CC" itemLabel = "Cedula" /> 
+                                                <f:selectItem itemValue = "TI" itemLabel = "Tarjeta de identidad" /> 
+                                                <f:selectItem itemValue = "PA" itemLabel = "Pasaporte" /> 
+                                            </h:selectOneMenu>                 
+                                        </td>
+                                        <td align="right" style="width: 205px">No. Identificacion:</td>
+                                        <td align="left"><h:inputText style="width: 250px"  value="#{giroController.current.beneficiario.numidentifiacion}"/></td>
+                                    </tr>
+                                    <tr></tr>
+                                    <tr>
+                                        <td style="width: 205px">Primer Nombre:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.beneficiario.primernombre}" readonly="true"/></td>
+                                        <td align="right" style="width: 205px">Segundo Nombre:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.beneficiario.segundonombre}" readonly="true"/></td>                                        
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 205px">Primer Apellido:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.beneficiario.primerapellido}"  readonly="true"/></td>
+                                        <td align="right" style="width: 205px">Segundo Apellido:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.beneficiario.segundoapellido}" readonly="true"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <h:commandButton value="Buscar Cliente" action="#{giroController.esBeneficiario(1)}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 205px">Direccion:</td>
+                                        <td colspan="3"><h:inputText style="width: 450px" value="#{giroController.current.beneficiario.direccion}" readonly="true" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 205px">Telefono:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.beneficiario.telefono}"  readonly="true"/></td>
+                                        <td align="right" style="width: 205px">Celular:</td>
+                                        <td><h:inputText style="width: 250px" value="#{giroController.current.beneficiario.celular}"  readonly="true"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 205px">Estado/Dpto:</td>
+                                        <td>
+                                            <h:selectOneMenu value = "#{giroController.current.beneficiario.departamento}"> 
+                                                <f:selectItem itemValue = "Cauca" itemLabel = "Cauca" /> 
+                                                <f:selectItem itemValue = "Valle del cauca" itemLabel = "Valle del cauca" /> 
+                                                <f:selectItem itemValue = "Bolivar" itemLabel = "Bolivar" /> 
+                                            </h:selectOneMenu> 	                               
+                                        </td>
+                                        <td align="right" style="width: 205px">Ciudad:</td>
+                                        <td>
+                                            <h:selectOneMenu value = "#{giroController.current.beneficiario.ciudad}"> 
+                                                <f:selectItem itemValue = "Popayan" itemLabel = "Popayan" /> 
+                                                <f:selectItem itemValue = "Cali" itemLabel = "Cali" /> 
+                                                <f:selectItem itemValue = "Cartagena" itemLabel = "Cartagena" /> 
+                                            </h:selectOneMenu> 
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div id="formMonto">                               
+                                <table>
+                                    <tr>
+                                        <td><strong>Datos del Monto:</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monto a enviar:</td>
+                                        <td align="left"><h:inputText id="inputCosto" style="width: 200px" value="#{giroController.current.cantidad}"/></td>
+                                        <td style="width: 35px;"></td>
+                                        <td><h:commandButton value="Calcular Costo" action="#{giroController.calcularCosto()}">
+                                                <f:ajax execute = "inputCosto" render = "costoMensaje" />
+                                            </h:commandButton>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Costo envio:
+                                        </td>
+                                        <td>
+                                            <h:outputText id = "costoMensaje" value = "#{giroController.costoGiro}"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div align="center">    
+                                <br/>
+                                <h:commandButton action="#{giroController.registrarGiro(sucursalController.current)}" value="Giro"/>                                      
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </h:body>
+</html>
+
